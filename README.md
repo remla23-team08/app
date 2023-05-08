@@ -16,4 +16,11 @@
 ### Formatting code
 `npm run format`
 
+### UI Endpoint
+`http://localhost:8083`
 
+### Docker Build
+`docker build -t <tag> .`
+
+### Docker Run
+`docker run --rm -p8083:8083 <tag>`

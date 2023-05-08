@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 const PORT = 8083;
 
 module.exports = {
@@ -14,6 +15,13 @@ module.exports = {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader", options: { url: false } },
+        ],
       },
     ],
   },
@@ -33,5 +41,6 @@ module.exports = {
       filename: "index.html",
       inject: "body",
     }),
+    new Dotenv(),
   ],
 };
