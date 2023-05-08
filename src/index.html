@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Getting Started</title>
-</head>
-<body>
-<script src="index.ts"></script>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Music Predictor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div>
+    <form>
+        <div>
+        <label for="file">Select a music file (.wav format)</label>
+        <input id="file" type="file" name="file" style="line-height: 30px; margin-bottom: 1px"/>
+            <input type="submit" value="POST to server" style="margin-top: 3px"></input>
+        </div>
+        <audio id="audio" controls style="margin: 10px">
+            <source src="" id="src" />
+        </audio>
+        <p>Request Result:</p>
+        <p id="requestResult"></p>
+    </form>
+</div>
+<script src="index.js"></script>
