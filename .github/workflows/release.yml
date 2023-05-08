@@ -30,6 +30,7 @@ jobs:
         run: |
           IMG=ghcr.io/${{ github.repository }}
           docker build \
+            --build-arg NPM_TOKEN=${{ secrets.GH_TOKEN }} \
             -t ${IMG}:latest \
             -t ${IMG}:${{ env.version_major }}-latest \
             -t ${IMG}:${{ env.version_major }}.${{ env.version_minor }}-latest \
