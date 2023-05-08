@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/remla23-team08/app#readme",
   "devDependencies": {
+    "@remla23-team08/lib": "^0.0.2",
     "@types/lodash": "^4.14.194",
     "html-webpack-plugin": "^5.5.1",
     "prettier": "2.8.8",
