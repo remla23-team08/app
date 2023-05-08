@@ -28,16 +28,6 @@ function sendData(data) {
     }
   };
 
-  // Define what happens on successful data submission
-  XHR.addEventListener("load", (event) => {
-    alert("Yeah! Data sent and response loaded.");
-  });
-
-  // Define what happens in case of an error
-  XHR.addEventListener("error", (event) => {
-    alert("Oops! Something went wrong.");
-  });
-
   // Set up our request
   XHR.open("POST", process.env.MODEL_SERVICE_URL);
 
