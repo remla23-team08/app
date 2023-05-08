@@ -1,0 +1,35 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
+    "format": "prettier --write \"{,*/**}*.{js,jsx,ts,tsx}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remla23-team08/app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/remla23-team08/app/issues"
+  },
+  "homepage": "https://github.com/remla23-team08/app#readme",
+  "devDependencies": {
+    "@types/lodash": "^4.14.194",
+    "html-webpack-plugin": "^5.5.1",
+    "prettier": "2.8.8",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
