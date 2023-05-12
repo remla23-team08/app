@@ -1,0 +1,77 @@
+name: Release Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-tag-release:
+    name: Build, Tag & Release
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Generate GitHub App Token
+        id: generate_github_app_token
+        uses: tibdex/github-app-token@v1.8.0
+        with:
+          app_id: ${{ secrets.GH_APP_ID }}
+          private_key: ${{ secrets.GH_APP_KEY }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate_github_app_token.outputs.token }}
+          persist-credentials: true
+      
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '3.1.x'
+        env: 
+          DOTNET_INSTALL_DIR: ${{ runner.workspace }}/dotnet
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+        
+      - name: Get GitVersion
+        id: get_gitversion
+        uses: gittools/actions/gitversion/execute@v0
+        with:
+          useConfigFile: true
+          configFilePath: GitVersion.yml
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_TOKEN }}
+      
+      - name: Build & Push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.get_gitversion.outputs.majorMinorPatch }}
+          secrets: |
+            "NPM_TOKEN=${{ secrets.GH_TOKEN }}"
+      
+      - name: Tag and Release
+        env: 
+          GITHUB_TOKEN: ${{ steps.generate_github_app_token.outputs.token }}
+        run: |
+          git config user.name "GitHub Actions [bot]"
+          git config user.email "actions@github.com"
+          git status # This is just to check if the git config worked
+          git pull origin main # In case any changes were made since checkout
+          git tag ${{ steps.get_gitversion.outputs.majorMinorPatch }} -m "Release ${{ steps.get_gitversion.outputs.majorMinorPatch }}"
+          git push --tags
+
+          # Create a GitHub release from latest tag
+          gh release create ${{ steps.get_gitversion.outputs.majorMinorPatch }} \
+            --title "${{ steps.get_gitversion.outputs.majorMinorPatch }}" \
+            --generate-notes
