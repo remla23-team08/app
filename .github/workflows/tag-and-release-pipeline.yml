@@ -43,6 +43,21 @@ jobs:
           useConfigFile: true
           configFilePath: GitVersion.yml
       
+      - name: Setup Node.js 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          registry-url: https://npm.pkg.github.com/
+          scope: '@remla23-team08'
+      
+      - name: Configure Git Credentials
+        run: |
+          git config user.name "GitHub Actions [bot]"
+          git config user.email "actions@github.com"
+
+      - name: Bump package version
+        run: npm version ${{ steps.get_gitversion.outputs.majorMinorPatch }} --no-git-tag-version
+      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -63,16 +78,16 @@ jobs:
           secrets: |
             "NPM_TOKEN=${{ secrets.GH_TOKEN }}"
       
-      - name: Tag and Release
+      - name: Commit, Tag and Release new version
         env: 
           GITHUB_TOKEN: ${{ steps.generate_github_app_token.outputs.token }}
         run: |
-          git config user.name "GitHub Actions [bot]"
-          git config user.email "actions@github.com"
           git status # This is just to check if the git config worked
           git pull origin main # In case any changes were made since checkout
+          git add package.json
+          git commit -m "Update to version ${{ steps.get_gitversion.outputs.majorMinorPatch }} in package.json [skip ci]"
           git tag ${{ steps.get_gitversion.outputs.majorMinorPatch }} -m "Release ${{ steps.get_gitversion.outputs.majorMinorPatch }}"
-          git push --tags
+          git push --set-upstream origin $(git branch --show-current) --follow-tags
 
           # Create a GitHub release from latest tag
           gh release create ${{ steps.get_gitversion.outputs.majorMinorPatch }} \
