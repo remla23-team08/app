@@ -2,7 +2,10 @@ FROM node:16
 WORKDIR /usr/src/app
 
 COPY package.json .npmrc ./
-RUN npm install
+
+RUN --mount=type=secret,id=NPM_TOKEN \
+  NPM_TOKEN=$(cat /run/secrets/NPM_TOKEN) \
+  npm install
 
 COPY . .
 RUN npm run build
