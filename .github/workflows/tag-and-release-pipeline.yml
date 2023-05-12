@@ -59,7 +59,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ github.repository }}:${{ steps.get_gitversion.outputs.majorMinorPatch }}
+          tags: ghcr.io/${{ github.repository }}:${{ steps.get_gitversion.outputs.majorMinorPatch }}
           secrets: |
             "NPM_TOKEN=${{ secrets.GH_TOKEN }}"
       
