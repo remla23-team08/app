@@ -54,7 +54,6 @@ jobs:
         run: |
           DOCKER_IMG=ghcr.io/${{ github.repository }}
           docker build \
-            --build-arg NPM_TOKEN=${{ secrets.GH_TOKEN }}
             --tag $DOCKER_IMG:${{ steps.get_gitversion.outputs.majorMinorPatch }} \
             --tag $DOCKER_IMG:latest \
             .
