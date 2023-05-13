@@ -68,6 +68,8 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: |
             ${{ steps.get_gitversion.outputs.majorMinorPatch }}
+            ${{ steps.get_gitversion.outputs.major }}.${{ steps.get_gitversion.outputs.minor }}
+            ${{ steps.get_gitversion.outputs.major }}
             latest
       
       - name: Login to GitHub Container Registry
