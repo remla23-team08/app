@@ -1,6 +1,15 @@
 FROM node:20
 WORKDIR /usr/src/app
 
+RUN apt-get update && apt-get install -y \
+  openssl \
+  vim \
+  curl \
+  lsof
+
+LABEL authors="Team 08 REMLA" \
+  description="Application Frontend"
+
 COPY package.json .npmrc ./
 
 RUN --mount=type=secret,id=NPM_TOKEN \
