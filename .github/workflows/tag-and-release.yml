@@ -95,7 +95,7 @@ jobs:
         run: |
           git status # This is just to check if the git config worked
           git pull origin main # In case any changes were made since checkout
-          git add package.json
+          git add package.json package-lock.json
           git commit -m "Update to version ${{ steps.get_gitversion.outputs.majorMinorPatch }} in package.json [skip ci]"
           git tag ${{ steps.get_gitversion.outputs.majorMinorPatch }} -m "Release ${{ steps.get_gitversion.outputs.majorMinorPatch }}"
           git push --set-upstream origin $(git branch --show-current) --follow-tags

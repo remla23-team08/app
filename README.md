@@ -24,7 +24,7 @@ In order to run the application locally, you need to have the following:
     ```bash
     npm install
     ```
-6. Build the application by running the following command:
+6. Start the application by running the following command:
     ```bash
     npm run start
     ```
