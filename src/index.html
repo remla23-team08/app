@@ -28,15 +28,24 @@
             background-color: #3D5A80;
             color: #E0FBFC;
         }
-        .btn-good{
+        .btn-validation{
             background-color: #98C1D9;
             border-color: #98C1D9 ;
             color: #E0FBFC;
         }
-        .btn-bad{
-            
+        .btn-validation:hover{
             background-color: #98C1D9;
             border-color: #98C1D9 ;
+            color: #E0FBFC;
+        }
+        .btn-validation:active:focus{
+            background-color: #98C1D9;
+            border-color: #98C1D9 ;
+            color: #E0FBFC;
+        }
+        .btn-validation:focus{
+            background-color: #EE6C4D;
+            border-color: #EE6C4D ;
             color: #E0FBFC;
         }
     </style>
@@ -47,62 +56,9 @@
         <div class="containter mx-3 my-3" >
             <div class="row">
                 <h1 class="text-center">Please leave your review below</h1>
-                <div class="mx-auto col-10 col-md-8 col-lg-6">
-                    <form class="needs-validation" id="reviewForm">
-                        <div class="form-group my-2">
-                            <label for="nameField" class="form-label">Please leave your name</label>
-                            <input class="form-control" id="nameField" placeholder="Your name" required></textarea>
-                            <div class="invalid-feedback">
-                                Please leave your name.
-                            </div>
-                        </div>
-                        <div class="form-group my-2">
-                            <label for="emailField" class="form-label">Please leave your email address</label>
-                            <input type="email" class="form-control" id="emailField" placeholder="name@example.com" required>
-                            <div class="invalid-feedback">
-                                Please leave your email.
-                            </div>
-                        </div>
-                        <div class="form-group my-2">
-                            <label for="reviewField" class="form-label">Leave your review here</label>
-                            <textarea class="form-control" id="reviewField" rows="3" required></textarea>
-                            <div class="invalid-feedback">
-                                Please leave a review.
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                <label class="form-check-label" for="invalidCheck">
-                                    Agree to terms and conditions
-                                </label>
-                                <div class="invalid-feedback">
-                                    You must agree before submitting.
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" id="submit" class="btn btn-primary btn-review my-2">Submit</button>
-                    </form>
-                </div>
-
-                <div class="row" id="afterSubmit" style="visibility: hidden;">
-                    <p class="h2 text-center my-4" id="requestResult"></p>
-                    
-                    <div class="col-sm-12 text-center">
-                        <p class="mb-0">For our validation, is the sentiment correctly analyzed:</p>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button id="good" class="btn btn-good " >👍</button>
-                            <button id="bad" class="btn btn-bad" >👎</button>
-                        </div>
-                    </div>
-                </div>
+                    <div id="reviewForm"></div>
             </div>
-            
-
-
-            
         </div>
-        
 
     </body>
 <script src="index.ts"></script>

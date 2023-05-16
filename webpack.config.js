@@ -8,7 +8,7 @@ const pages = ['index', 'home'];
 module.exports = {
   entry: {
     index: "./src/index.tsx",
-    home: "./src/home.ts",
+    home: "./src/home.tsx",
   },
   output: {
     filename: "[name].js",
