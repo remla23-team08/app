@@ -5,16 +5,6 @@ const afterSubmit = document.getElementById("afterSubmit");
 const badReview: string = "We are sorry to hear you had a bad experience. 🙁";
 const goodReview: string = "We are glad to hear you had a good experience. 😀";
 
-function onSubmit(event) {
-  event.preventDefault()
-  console.log(event)
-  if(checkForms()){ 
-    let review = (<HTMLInputElement>document.getElementById("reviewField")).value;
-    sendData({ review: review });
-    afterSubmit.style.visibility = "visible"
-  }
-}
-
 function checkForms(): boolean {
   'use strict'
 
@@ -35,6 +25,16 @@ function checkForms(): boolean {
       }, false)
     })
   return true
+}
+
+function onSubmit(event) {
+  event.preventDefault()
+  console.log(event)
+  if(checkForms()){ 
+    let review = (document.getElementById("reviewField") as HTMLInputElement).value;
+    sendData({ review: review });
+    afterSubmit.style.visibility = "visible"
+  }
 }
 
 function sendData(data) {

@@ -1,12 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const Dotenv = require("dotenv-webpack")
+const webpack = require('webpack');
+const Dotenv = require("dotenv-webpack");
 const PORT = 8083;
-const pages = ['index', 'home']
+const pages = ['index', 'home'];
 
 module.exports = {
   entry: {
-    index: "./src/index.ts",
+    index: "./src/index.tsx",
     home: "./src/home.ts",
   },
   output: {
@@ -18,6 +19,11 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.jsx?$/,
+        use: "babel-loader",
         exclude: /node_modules/,
       },
       {
@@ -42,7 +48,10 @@ module.exports = {
     compress: true,
     port: PORT,
   },
-  plugins: [new Dotenv()].concat(
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+  },
+  plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin()].concat(
     pages.map(
       (page) =>
         new HtmlWebpackPlugin({
