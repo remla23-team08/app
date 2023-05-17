@@ -1,9 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require('webpack');
+const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
 const PORT = 8083;
-const pages = ['index', 'review'];
+const pages = ["index", "review"];
 
 module.exports = {
   entry: {
@@ -49,7 +49,7 @@ module.exports = {
     port: PORT,
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
   },
   plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin()].concat(
     pages.map(
@@ -61,8 +61,8 @@ module.exports = {
           metaDesc: "App",
           template: `./src/${page}.html`,
           filename: `${page}.html`,
-          chunks: [page]
+          chunks: [page],
         })
-    ),
+    )
   ),
 };
