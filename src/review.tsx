@@ -48,7 +48,7 @@ const ReviewForm = () => {
     };
 
     // Set up our request
-    XHR.open("POST", process.env.MODEL_SERVICE_URL + "predict");
+    XHR.open("POST", process.env.MODEL_SERVICE_URL + "/predict");
 
     XHR.setRequestHeader("Content-type", "application/json");
 
@@ -78,7 +78,7 @@ const ReviewForm = () => {
 
     console.log("opening...");
     // Set up our request
-    XHR.open("POST", process.env.MODEL_SERVICE_URL + "model-accuracy");
+    XHR.open("POST", process.env.MODEL_SERVICE_URL + "/model-accuracy");
 
     XHR.setRequestHeader("Content-type", "application/json");
 
