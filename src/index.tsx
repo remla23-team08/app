@@ -22,8 +22,11 @@ const ReviewForm = () => {
   // sentimentReceived describes if a sentiment was received from the API call
   const [sentimentReceived, setSentimentReceived] = React.useState(false);
 
+  const [accuracyGiven, setAccuracyGiven] = React.useState(false);
+  const [errorOccured, setErrorOccurred] = React.useState(false);
+
   // Function that handles sending the review with an API call 
-  const sendData = (data) => {
+  const sendReview = (reviewData) => {
     const XHR = new XMLHttpRequest();
   
     XHR.onreadystatechange = function () {
@@ -40,18 +43,52 @@ const ReviewForm = () => {
         }
         // We received a sentiment without errors so we change the state
         setSentimentReceived(true)
-      } else {
-        setSentiment("Error occurred.");
+      } 
+      // If we get a server of client error show error message
+      if (/(4|5)\d\d/.test(String(XHR.status))) {
+        setErrorOccurred(true)
       }
     };
   
     // Set up our request
-    XHR.open("POST", process.env.MODEL_SERVICE_URL);
+    XHR.open("POST", process.env.MODEL_SERVICE_URL+"predict");
   
     XHR.setRequestHeader("Content-type", "application/json");
+
+    console.log(XHR)
   
     // Send our object; HTTP headers are set automatically
-    XHR.send(JSON.stringify(data));
+    XHR.send(JSON.stringify(reviewData));
+  }
+
+  const sendAccuracy = (accuracyData) => {
+    console.log(accuracyData)
+    const XHR = new XMLHttpRequest();
+  
+    XHR.onreadystatechange = function () {
+      // console.log(XHR);
+      // Check if we get a successful response to our request
+      if (XHR.readyState == XMLHttpRequest.DONE && XHR.status == 200) {
+        // console.log("Successful Request");
+        // console.log(XHR.responseText);
+      } 
+      // If we get a server of client error show error message
+      if (/(4|5)\d\d/.test(String(XHR.status))) {
+        setErrorOccurred(true)
+      }
+    };
+  
+    console.log("opening...")
+    // Set up our request
+    XHR.open("POST", process.env.MODEL_SERVICE_URL+"model-accuracy");
+  
+    XHR.setRequestHeader("Content-type", "application/json");
+
+    console.log(XHR)
+
+    console.log("sending...")
+    // Send our object; HTTP headers are set automatically
+    XHR.send(JSON.stringify(accuracyData));
   }
 
   // Function that handles when submit is pressed on the form
@@ -68,11 +105,29 @@ const ReviewForm = () => {
     setValidated(true);
   };
 
+  const handleAccuracy = (event) => {
+    if(!accuracyGiven) {
+      let accuracy = null;
+      if(event.target.id == "bad") {
+        accuracy = false;
+        document.getElementById("bad").classList.add("btn-accuracy-clicked");
+      } else {
+        accuracy = true;
+        document.getElementById("good").classList.add("btn-accuracy-clicked")
+      }
+      setAccuracyGiven(true);
+      sendAccuracy({
+        prediction: review,
+        accuracy: accuracy
+      })
+    }
+  }
+
   // If the state validForm is changed and it is set to true then send the review
   React.useEffect(
     function onChange() {
       if (validForm) {
-        sendData({ review: review });
+        sendReview({ review: review });
       }
     },
     [validForm]
@@ -80,6 +135,9 @@ const ReviewForm = () => {
 
   return(
     <div className="mx-auto col-10 col-md-8 col-lg-4">
+      <div className="alert alert-danger" role="alert" hidden={!errorOccured}>
+        An error occurred
+      </div>
 
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
@@ -116,9 +174,9 @@ const ReviewForm = () => {
 
           <div className="col-sm-12 text-center">
               <p className="mb-0">For our validation, is the sentiment correctly analyzed:</p>
-              <ButtonGroup>
-                <Button id="good" className="btn btn-validation">👍</Button>
-                <Button id="bad" className="btn btn-validation">👎</Button>
+              <ButtonGroup onClick={handleAccuracy}>
+                <Button id="good" disabled={accuracyGiven} className="btn btn-accuracy">👍</Button>
+                <Button id="bad" disabled={accuracyGiven} className="btn btn-accuracy">👎</Button>
               </ButtonGroup>
           </div>
         </div>
