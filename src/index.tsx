@@ -14,7 +14,7 @@ const ReviewForm = () => {
   // review is state that contains the current review left by the user
   const [review, setReview] = React.useState("")
   // sentiment is the current sentiment of the review
-  const [sentiment, setSentiment] = React.useState("")
+  const [sentiment, setSentiment] = React.useState(true)
   // validated is the state that describes if the form is validated
   const [validated, setValidated] = React.useState(false);
   // while validForm is the state that describes if the form is valid
@@ -37,10 +37,8 @@ const ReviewForm = () => {
         console.log(XHR.responseText);
         let prediction = JSON.parse(XHR.responseText).prediction;
         if (prediction == 0) {
-          setSentiment(badReview);
-        } else {
-          setSentiment(goodReview);
-        }
+          setSentiment(false);
+        } 
         // We received a sentiment without errors so we change the state
         setSentimentReceived(true)
       } 
@@ -75,6 +73,7 @@ const ReviewForm = () => {
       // If we get a server of client error show error message
       if (/(4|5)\d\d/.test(String(XHR.status))) {
         setErrorOccurred(true)
+        console.log(XHR)
       }
     };
   
@@ -117,7 +116,7 @@ const ReviewForm = () => {
       }
       setAccuracyGiven(true);
       sendAccuracy({
-        prediction: review,
+        prediction: sentiment ? 1 : 0,
         accuracy: accuracy
       })
     }
@@ -170,7 +169,7 @@ const ReviewForm = () => {
 
         <div hidden={!sentimentReceived} className='row'>
 
-          <p className="h2 text-center my-4" id="requestResult">{sentiment}</p>
+          <p className="h2 text-center my-4" id="requestResult">{sentiment ? goodReview : badReview}</p>
 
           <div className="col-sm-12 text-center">
               <p className="mb-0">For our validation, is the sentiment correctly analyzed:</p>
