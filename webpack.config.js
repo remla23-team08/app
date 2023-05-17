@@ -3,12 +3,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
 const Dotenv = require("dotenv-webpack");
 const PORT = 8083;
-const pages = ['index', 'home'];
+const pages = ['index', 'review'];
 
 module.exports = {
   entry: {
     index: "./src/index.tsx",
-    home: "./src/home.tsx",
+    review: "./src/review.tsx",
   },
   output: {
     filename: "[name].js",
