@@ -1,12 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
 const Dotenv = require("dotenv-webpack");
 const PORT = 8083;
+const pages = ['index', 'home'];
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: {
+    index: "./src/index.tsx",
+    home: "./src/home.tsx",
+  },
   output: {
-    filename: "main.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -17,10 +22,21 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
+        test: /\.jsx?$/,
+        use: "babel-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /\\.css$/,
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader", options: { url: false } },
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
         ],
       },
     ],
@@ -32,15 +48,21 @@ module.exports = {
     compress: true,
     port: PORT,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      hash: true,
-      title: "App",
-      metaDesc: "App",
-      template: "./src/index.html",
-      filename: "index.html",
-      inject: "body",
-    }),
-    new Dotenv(),
-  ],
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+  },
+  plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin()].concat(
+    pages.map(
+      (page) =>
+        new HtmlWebpackPlugin({
+          hash: true,
+          title: "App",
+          myPageHeader: page,
+          metaDesc: "App",
+          template: `./src/${page}.html`,
+          filename: `${page}.html`,
+          chunks: [page]
+        })
+    ),
+  ),
 };
