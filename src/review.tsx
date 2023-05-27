@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as React from "react";
 import { ButtonGroup } from "react-bootstrap";
+import "./review.css"
 
 // Set types of sentiment
 const badReview: string = "We are sorry to hear you had a bad experience. 🙁";
@@ -211,4 +212,11 @@ const ReviewForm = () => {
   );
 };
 
-ReactDOM.render(<ReviewForm />, document.getElementById("reviewForm"));
+const ReviewPage = () => {
+  return <div className="row mx-3 my-3">
+      <h1 className="text-center">Please leave your review below</h1>
+      <ReviewForm/>
+    </div>
+}
+
+ReactDOM.render(<ReviewPage />, document.getElementById("ReviewPage"));

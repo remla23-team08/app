@@ -16,14 +16,33 @@ body{
 	background-color: #3D5A80;
 	color: #E0FBFC;
 }
-.btn-good{
+.btn-accuracy{
 	background-color: #98C1D9;
 	border-color: #98C1D9 ;
 	color: #E0FBFC;
 }
-.btn-bad{
-	
+.btn-accuracy:hover{
 	background-color: #98C1D9;
 	border-color: #98C1D9 ;
+	color: #E0FBFC;
+}
+.btn-accuracy:active:focus{
+	background-color: #98C1D9;
+	border-color: #98C1D9 ;
+	color: #E0FBFC;
+}
+.btn-accuracy:focus{
+	background-color: #EE6C4D;
+	border-color: #EE6C4D ;
+	color: #E0FBFC;
+}
+.btn-accuracy[disabled]{
+	background-color: #98C1D9;
+	border-color: #98C1D9 ;
+	color: #E0FBFC;
+}
+.btn-accuracy-clicked[disabled]{
+	background-color: #EE6C4D;
+	border-color: #EE6C4D ;
 	color: #E0FBFC;
 }

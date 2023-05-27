@@ -3,12 +3,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
 const PORT = 8083;
-const pages = ["index", "review"];
+const pages = ["index", "review", "restaurant-picker"];
 
 module.exports = {
   entry: {
     index: "./src/index.tsx",
     review: "./src/review.tsx",
+    "restaurant-picker": "./src/restaurant-picker.tsx",
   },
   output: {
     filename: "[name].js",
@@ -27,17 +28,15 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\\.css$/,
+        test: /\.css$/i,
         use: [
           "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: true,
-            },
-          },
+          "css-loader"
         ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
     ],
   },
