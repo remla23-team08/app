@@ -1,8 +1,3 @@
-body{
-	background-color: #98C1D9;
-	color: #293241;
-}
-
 .logo-white{
 	border-radius: 50%;
 }
@@ -14,8 +9,4 @@ body{
 }
 .logo-black:hover{
 	border: 1px solid #E0FBFC;
-}
-.myNavbar{
-	background-color: #3D5A80;
-	color: #E0FBFC;
 }

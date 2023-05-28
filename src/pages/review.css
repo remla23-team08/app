@@ -1,7 +1,3 @@
-body{
-	background-color: #98C1D9;
-	color: #293241;
-}
 .btn-review{
 	background-color: #EE6C4D;
 	border-color: #EE6C4D;
@@ -11,10 +7,6 @@ body{
 	background-color: #E0FBFC;
 	border-color: #E0FBFC;
 	color: #293241;
-}
-.myNavbar{
-	background-color: #3D5A80;
-	color: #E0FBFC;
 }
 .btn-accuracy{
 	background-color: #98C1D9;
@@ -45,4 +37,12 @@ body{
 	background-color: #EE6C4D;
 	border-color: #EE6C4D ;
 	color: #E0FBFC;
+}
+.logo{
+	border-radius: 50%;
+}
+.imageContainer{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
