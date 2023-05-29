@@ -48,5 +48,18 @@ module.exports = {
   resolve: {
     extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
   },
-  plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin(), new HtmlWebpackPlugin({ template: './src/index.html', filename: 'index.html' })]
+  plugins: [
+    new Dotenv({
+      path: "./.env",
+      expand: true
+    }), 
+    new webpack.DefinePlugin({
+      'process.env.MODEL_SERVICE_URL': JSON.stringify(process.env.MODEL_SERVICE_URL || 'http://localhost:8080'),
+    }),
+    new webpack.HotModuleReplacementPlugin(), 
+    new HtmlWebpackPlugin({ 
+      template: './src/index.html', 
+      filename: 'index.html' 
+    })
+  ]
 };
