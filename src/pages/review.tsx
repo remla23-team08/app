@@ -229,7 +229,7 @@ const ReviewPage = () => {
   return <div>
       {/* <div className='imageContainer mt-2'>
       <Image height={imageWidthHeight} width={imageWidthHeight} className='logo mx-3 text-center' src={require("" + urlToImage)} />
-      </div> */}
+      </div> */} //Todo add image support
       <div className="row mx-3 mb-3">
         <h1 className="text-center">Please leave your review of {restaurantName}:</h1>
         <ReviewForm/>

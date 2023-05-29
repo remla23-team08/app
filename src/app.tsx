@@ -14,7 +14,7 @@ const App = () => {
 				<Route index path="/" element={<HomePage/>} />
 				<Route path='/restaurant-picker' element={<RestaurantPage/>} />
 				<Route path='/review' element={<ReviewPage/>} />
-				{/* <Route component={NoMatch} /> */}
+				{/* <Route component={NoMatch} /> */}  //Todo no match
 			</Routes>
 		</BrowserRouter>
 	);
