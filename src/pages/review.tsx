@@ -1,8 +1,11 @@
-import ReactDOM from "react-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as React from "react";
 import { ButtonGroup } from "react-bootstrap";
+import "./review.css"
+import { useLocation } from 'react-router-dom';
+import Image from "react-bootstrap/Image"
+
 
 // Set types of sentiment
 const badReview: string = "We are sorry to hear you had a bad experience. 🙁";
@@ -211,4 +214,27 @@ const ReviewForm = () => {
   );
 };
 
-ReactDOM.render(<ReviewForm />, document.getElementById("reviewForm"));
+type RestaurantType = {
+  restaurantName: string
+  urlToImage: string
+}
+
+const ReviewPage = () => {
+  // Get the restaurant properties from the restaurant picker state
+  const location = useLocation()
+  const { restaurantName, urlToImage }: RestaurantType = location.state
+
+  const imageWidthHeight = 100
+
+  return <div>
+      {/* <div className='imageContainer mt-2'>
+      <Image height={imageWidthHeight} width={imageWidthHeight} className='logo mx-3 text-center' src={require("" + urlToImage)} />
+      </div> */} //Todo add image support
+      <div className="row mx-3 mb-3">
+        <h1 className="text-center">Please leave your review of {restaurantName}:</h1>
+        <ReviewForm/>
+      </div>
+  </div>
+}
+
+export default ReviewPage

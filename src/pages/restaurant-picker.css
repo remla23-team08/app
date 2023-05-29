@@ -1,0 +1,12 @@
+.logo-white{
+	border-radius: 50%;
+}
+.logo-black{
+	border-radius: 50%;
+}
+.logo-white:hover{
+	border: 1px solid #293241;
+}
+.logo-black:hover{
+	border: 1px solid #E0FBFC;
+}

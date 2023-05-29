@@ -1,0 +1,48 @@
+.btn-review{
+	background-color: #EE6C4D;
+	border-color: #EE6C4D;
+	color: #E0FBFC;
+}
+.btn-review:hover{
+	background-color: #E0FBFC;
+	border-color: #E0FBFC;
+	color: #293241;
+}
+.btn-accuracy{
+	background-color: #98C1D9;
+	border-color: #98C1D9 ;
+	color: #E0FBFC;
+}
+.btn-accuracy:hover{
+	background-color: #98C1D9;
+	border-color: #98C1D9 ;
+	color: #E0FBFC;
+}
+.btn-accuracy:active:focus{
+	background-color: #98C1D9;
+	border-color: #98C1D9 ;
+	color: #E0FBFC;
+}
+.btn-accuracy:focus{
+	background-color: #EE6C4D;
+	border-color: #EE6C4D ;
+	color: #E0FBFC;
+}
+.btn-accuracy[disabled]{
+	background-color: #98C1D9;
+	border-color: #98C1D9 ;
+	color: #E0FBFC;
+}
+.btn-accuracy-clicked[disabled]{
+	background-color: #EE6C4D;
+	border-color: #EE6C4D ;
+	color: #E0FBFC;
+}
+.logo{
+	border-radius: 50%;
+}
+.imageContainer{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
