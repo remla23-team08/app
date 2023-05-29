@@ -51,18 +51,26 @@ module.exports = {
   resolve: {
     extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
   },
-  plugins: [new Dotenv(), new webpack.HotModuleReplacementPlugin()].concat(
-    pages.map(
-      (page) =>
-        new HtmlWebpackPlugin({
-          hash: true,
-          title: "App",
-          myPageHeader: page,
-          metaDesc: "App",
-          template: `./src/${page}.html`,
-          filename: `${page}.html`,
-          chunks: [page],
-        })
-    )
+  plugins: [
+    new Dotenv({
+      path: "./.env",
+      expand: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.MODEL_SERVICE_URL': JSON.stringify(process.env.MODEL_SERVICE_URL || 'http://localhost:8080'),
+    }),
+    new webpack.HotModuleReplacementPlugin()].concat(
+      pages.map(
+        (page) =>
+          new HtmlWebpackPlugin({
+            hash: true,
+            title: "App",
+            myPageHeader: page,
+            metaDesc: "App",
+            template: `./src/${page}.html`,
+            filename: `${page}.html`,
+            chunks: [page],
+          })
+      )
   ),
 };
