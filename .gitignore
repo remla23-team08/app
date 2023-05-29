@@ -3,3 +3,6 @@ build
 dist
 .idea
 NPM_TOKEN.txt
+.env
+.env.defaults
+.env.local
