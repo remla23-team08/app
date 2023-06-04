@@ -12,7 +12,9 @@ const badReview: string = "We are sorry to hear you had a bad experience. 🙁";
 const goodReview: string = "We are glad to hear you had a good experience. 😀";
 
 // React component that includes the form
-const ReviewForm = () => {
+const ReviewForm = ({restaurantName}) => {
+
+
   // review is state that contains the current review left by the user
   const [review, setReview] = React.useState("");
   // sentiment is the current sentiment of the review
@@ -131,6 +133,7 @@ const ReviewForm = () => {
       sendAccuracy({
         prediction: sentiment ? 1 : 0,
         accurate: accurate,
+        restaurantName: restaurantName, 
       });
     }
   };
@@ -139,7 +142,10 @@ const ReviewForm = () => {
   React.useEffect(
     function onChange() {
       if (validForm) {
-        sendReview({ review: review });
+        sendReview({ 
+          review: review,
+          restaurantName: restaurantName, 
+        });
       }
     },
     [validForm]
@@ -244,7 +250,7 @@ const ReviewPage = () => {
       </div> */} 
       <div className="row mx-3 mb-3">
         <h1 className="text-center">Please leave your review of {restaurantName}:</h1>
-        <ReviewForm/>
+        <ReviewForm restaurantName={restaurantName}/>
       </div>
   </div>
 }
