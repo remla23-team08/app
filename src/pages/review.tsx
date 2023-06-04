@@ -2,10 +2,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as React from "react";
 import { ButtonGroup } from "react-bootstrap";
-import "./review.css"
 import { useLocation } from 'react-router-dom';
 import Image from "react-bootstrap/Image"
 
+import "./review.css"
 
 // Set types of sentiment
 const badReview: string = "We are sorry to hear you had a bad experience. 🙁";
