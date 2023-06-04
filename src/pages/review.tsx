@@ -29,6 +29,12 @@ const ReviewForm = () => {
 
   // Function that handles sending the review with an API call
   const sendReview = (reviewData) => {
+    // Set sentiment and accuracy variables to default to handle new submit
+    setSentimentReceived(false)
+    setAccuracyGiven(false)
+    document.getElementById("good").classList.remove("btn-accuracy-clicked");
+    document.getElementById("bad").classList.remove("btn-accuracy-clicked");
+
     const XHR = new XMLHttpRequest();
 
     XHR.onreadystatechange = function () {
@@ -40,6 +46,9 @@ const ReviewForm = () => {
         let prediction = JSON.parse(XHR.responseText).prediction;
         if (prediction == 0) {
           setSentiment(false);
+        }
+        else {
+          setSentiment(true)
         }
         // We received a sentiment without errors so we change the state
         setSentimentReceived(true);
@@ -59,6 +68,10 @@ const ReviewForm = () => {
 
     // Send our object; HTTP headers are set automatically
     XHR.send(JSON.stringify(reviewData));
+
+    // Set form variables to false again to handle new submits
+    setValidForm(false)
+    setValidated(false)
   };
 
   const sendAccuracy = (accuracyData) => {
@@ -79,7 +92,6 @@ const ReviewForm = () => {
       }
     };
 
-    console.log("opening...");
     // Set up our request
     XHR.open("POST", process.env.MODEL_SERVICE_URL + "/model-accuracy");
 
@@ -87,7 +99,6 @@ const ReviewForm = () => {
 
     console.log(XHR);
 
-    console.log("sending...");
     // Send our object; HTTP headers are set automatically
     XHR.send(JSON.stringify(accuracyData));
   };
@@ -226,10 +237,11 @@ const ReviewPage = () => {
 
   const imageWidthHeight = 100
 
+  //Todo add image support
   return <div>
       {/* <div className='imageContainer mt-2'>
       <Image height={imageWidthHeight} width={imageWidthHeight} className='logo mx-3 text-center' src={require("" + urlToImage)} />
-      </div> */} //Todo add image support
+      </div> */} 
       <div className="row mx-3 mb-3">
         <h1 className="text-center">Please leave your review of {restaurantName}:</h1>
         <ReviewForm/>
