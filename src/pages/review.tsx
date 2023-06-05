@@ -57,7 +57,9 @@ const ReviewForm = ({restaurantName}) => {
       }
       // If we get a server of client error show error message
       if (/(4|5)\d\d/.test(String(XHR.status))) {
+        console.log("Unsuccessful Request")
         setErrorOccurred(true);
+        console.log(XHR);
       }
     };
 
@@ -81,14 +83,14 @@ const ReviewForm = ({restaurantName}) => {
     const XHR = new XMLHttpRequest();
 
     XHR.onreadystatechange = function () {
-      // console.log(XHR);
       // Check if we get a successful response to our request
       if (XHR.readyState == XMLHttpRequest.DONE && XHR.status == 200) {
-        // console.log("Successful Request");
-        // console.log(XHR.responseText);
+        console.log("Successful Request");
+        console.log(XHR.responseText);
       }
       // If we get a server of client error show error message
       if (/(4|5)\d\d/.test(String(XHR.status))) {
+        console.log("Unsuccessful Request")
         setErrorOccurred(true);
         console.log(XHR);
       }
