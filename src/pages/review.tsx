@@ -4,6 +4,7 @@ import * as React from "react";
 import { ButtonGroup } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
 import Image from "react-bootstrap/Image"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import "./review.css"
 
@@ -57,7 +58,9 @@ const ReviewForm = ({restaurantName}) => {
       }
       // If we get a server of client error show error message
       if (/(4|5)\d\d/.test(String(XHR.status))) {
+        console.log("Unsuccessful Request")
         setErrorOccurred(true);
+        console.log(XHR);
       }
     };
 
@@ -81,14 +84,14 @@ const ReviewForm = ({restaurantName}) => {
     const XHR = new XMLHttpRequest();
 
     XHR.onreadystatechange = function () {
-      // console.log(XHR);
       // Check if we get a successful response to our request
       if (XHR.readyState == XMLHttpRequest.DONE && XHR.status == 200) {
-        // console.log("Successful Request");
-        // console.log(XHR.responseText);
+        console.log("Successful Request");
+        console.log(XHR.responseText);
       }
       // If we get a server of client error show error message
       if (/(4|5)\d\d/.test(String(XHR.status))) {
+        console.log("Unsuccessful Request")
         setErrorOccurred(true);
         console.log(XHR);
       }
@@ -242,12 +245,18 @@ const ReviewPage = () => {
   const { restaurantName, urlToImage }: RestaurantType = location.state
 
   const imageWidthHeight = 100
+  // const RestaurantImage = require("" + urlToImage)
 
   //Todo add image support
   return <div>
       {/* <div className='imageContainer mt-2'>
-      <Image height={imageWidthHeight} width={imageWidthHeight} className='logo mx-3 text-center' src={require("" + urlToImage)} />
-      </div> */} 
+      <LazyLoadImage 
+        className='logo mx-3 text-center'
+        src={RestaurantImage}
+        width={imageWidthHeight} height={imageWidthHeight}
+        alt="Image Alt"
+      />
+      </div> */}
       <div className="row mx-3 mb-3">
         <h1 className="text-center">Please leave your review of {restaurantName}:</h1>
         <ReviewForm restaurantName={restaurantName}/>

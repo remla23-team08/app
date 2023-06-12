@@ -1,0 +1,11 @@
+.btn-home-page{
+	background-color: #EE6C4D;
+	border-color: #EE6C4D;
+	color: white;
+	width: 180px;
+}
+.btn-home-page:hover{
+	background-color: #E0FBFC;
+	border-color: #E0FBFC;
+	color: #293241;
+}

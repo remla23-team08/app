@@ -14,7 +14,7 @@ const App = () => {
 				<Route index path="/" element={<HomePage/>} />
 				<Route path='/restaurant-picker' element={<RestaurantPage/>} />
 				<Route path='/review' element={<ReviewPage/>} />
-				{/* <Route component={NoMatch} /> */}  //Todo no match
+				<Route element={<HomePage/>} /> {/** When wrong path is set go to the homepage */}
 			</Routes>
 		</BrowserRouter>
 	);
