@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
 const PORT = 8083;
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin')
+const gitRevisionPlugin = new GitRevisionPlugin();
+
 
 module.exports = {
   entry: {
@@ -55,6 +58,7 @@ module.exports = {
     }), 
     new webpack.DefinePlugin({
       'process.env.MODEL_SERVICE_URL': JSON.stringify(process.env.MODEL_SERVICE_URL || 'http://localhost:8080'),
+      'process.env.VERSION': JSON.stringify(gitRevisionPlugin.version()),
     }),
     new webpack.HotModuleReplacementPlugin(), 
     new HtmlWebpackPlugin({ 

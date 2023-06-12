@@ -19,14 +19,14 @@ const HomePage = () => {
 		<div className="span2">
 			<p className="lead text-center">
 				<Link to="/restaurant-picker">
-					<Button className="btn-to-review btn-lg btn-block">Leave a review</Button>
+					<Button className="btn-home-page btn-lg btn-block">Leave a review</Button>
 				</Link>
 			</p>
 			<p className="lead text-center">
-				<Button className="btn-to-overview btn-lg btn-block">Overview</Button>
+				<Button className="btn-home-page btn-lg btn-block">Overview</Button>
 			</p>
 			<p className="lead text-center">
-				<Button className="btn-to-contact btn-lg btn-block">Contact</Button>
+				<Button className="btn-home-page btn-lg btn-block">Contact</Button>
 			</p>
 		</div>
 	</div>

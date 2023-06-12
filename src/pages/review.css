@@ -38,11 +38,3 @@
 	border-color: #EE6C4D ;
 	color: #E0FBFC;
 }
-.logo{
-	border-radius: 50%;
-}
-.imageContainer{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
