@@ -6,7 +6,7 @@
 
 ### Checklist
 
-[//]: # (Place an '[x]' (no spaces) in all applicable fields. Please remove unrelated fields.)
+[//]: # (Place an '[x]' in all applicable fields. Please remove unrelated fields.)
 
 - [ ] Check if the target branch for this PR is correct
 - [ ] Update the documentation (if needed)
