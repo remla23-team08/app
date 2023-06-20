@@ -3,9 +3,10 @@ WORKDIR /usr/src/app
 
 RUN apt-get update && apt-get install -y \
   openssl \
-  vim \
+  vim \ 
   curl \
-  lsof
+  lsof \
+  iputils-ping
 
 LABEL authors="Team 08 REMLA" \
   description="Application Frontend"
