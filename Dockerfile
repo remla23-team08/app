@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
   vim \ 
   curl \
   lsof \
-  iputils-ping
+  iputils-ping \
+  dnsutils
 
 LABEL authors="Team 08 REMLA" \
   description="Application Frontend"
