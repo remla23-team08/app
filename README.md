@@ -1,5 +1,25 @@
 # App
 
+This repository contains the code for the web application that is used to leave reviews on restaurants and get back a sentiment analysis on the given reviews.
+
+## **Table of Contents**
+
+- [App](#app)
+  - [**Table of Contents**](#table-of-contents)
+  - [**Usage**](#usage)
+  - [**Running the application(locally)**](#running-the-applicationlocally)
+  - [**Docker Steps**](#docker-steps)
+    - [Building the Docker image](#building-the-docker-image)
+    - [Running the Docker image](#running-the-docker-image)
+  - [**General NPM commands**](#general-npm-commands)
+    - [Installing dependencies](#installing-dependencies)
+    - [Building](#building)
+    - [Running](#running)
+    - [Formatting code](#formatting-code)
+  - [**Versioning**](#versioning)
+  - [**Demonstration images**](#demonstration-images)
+  - [**Additional Resources**](#additional-resources)
+
 ## **Usage**
 
 There are multiple ways in which you can run the application:
@@ -56,7 +76,7 @@ docker run --rm -p 8083:8083 <tag>
 
 If all of the steps were followed correctly, the application should now be running on port `8083` on your local machine, more specifically on `http://localhost:8083`. Should the port be already in use, you can change the port mapping to something else, e.g. `-p 8084:8083` 
 
-> Note that the port on the left side of the colon is the port on your local machine, while the port on the right side of the colon is the port on the container - the latter should not be changed)
+> Note that the port on the left side of the colon is the port on your local machine, while the port on the right side of the colon is the port on the container - the latter should not be changed
 
 ## **General NPM commands**
 
@@ -90,7 +110,7 @@ Versioning of this repository is done automatically using GitHub Actions. The ve
 
 ## **Demonstration images**
 
-Below are some images of how to webpage looks
+Below are some images of how the webpage for the application looks:
 
 ![home](demo-images/app_home_page.png)
 *Home page*
