@@ -88,6 +88,20 @@ npm run format
 
 Versioning of this repository is done automatically using GitHub Actions. The versioning is done using the standard Semantic Versioning (SemVer) format. Version bumps are done automatically when a PR is merged to the `main` branch. To achieve this, we are using the GitVersion tool. For more information on how to use GitVersion, see [this link](https://gitversion.net/docs/).
 
+## **Demonstration images**
+
+Below are some images of how to webpage looks
+
+![home](demo-images/app_home_page.png)
+*Home page*
+
+![restaurant](demo-images/app_restaurant_page.png)
+*Restaurant selector page*
+
+![review](demo-images/app_review_page.png)
+*Review page*
+
+
 ## **Additional Resources**
 
 * [Semantic Versioning](https://semver.org/)
